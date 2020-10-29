@@ -1,0 +1,10 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "TestVideo" extends = "Group" initialFocus = "testVideo">
+  <interface>
+  </interface>
+  <script type = "text/brightscript" uri="TestVideo.brs">
+  </script>
+  <children >
+    <Video id = "testVideo" />
+  </children>
+</component>

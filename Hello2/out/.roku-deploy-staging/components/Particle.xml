@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "Particle" extends = "Group">
+  <interface>
+    <function name="setParams"/>
+    <function name="update"/>
+    <function name="isDead"/>
+    <function name="reset"/>
+  </interface>
+  <script type = "text/brightscript" uri="Particle.brs">
+  </script>
+  <children >
+    <Poster id = "particle" uri="pkg:/images/fire.png"/>
+  </children>
+</component>

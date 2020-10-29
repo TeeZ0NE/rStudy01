@@ -1,0 +1,19 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "MovieGridPanel" extends = "GridPanel" initialFocus = "posterGrid">
+  <interface>
+  </interface>
+  <script type="text/brightscript" uri="MovieGridPanel.brs">
+  </script>
+  <children>
+    <PosterGrid
+      id = "posterGrid"
+      basePosterSize = "[250, 140]"
+      caption1NumLines = "1"
+      caption2NumLines = "1"
+      numColumns = "4"
+      numRows = "3"
+      caption2Font = "font:SmallestSystemFont"
+      posterDisplayMode = "scaleToFit"
+      itemSpacing = "[30, 30]"/>
+  </children>
+</component>

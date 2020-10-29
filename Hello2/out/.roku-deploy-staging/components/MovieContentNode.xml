@@ -1,0 +1,9 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name="MovieContentNode" extends="ContentNode">
+    <interface>
+        <field id="posterURL" type="string"/>
+        <field id="overview" type="string"/>
+        <field id="releaseDate" type="string"/>
+        <field id="voteAverage" type="string"/>
+    </interface>
+</component>

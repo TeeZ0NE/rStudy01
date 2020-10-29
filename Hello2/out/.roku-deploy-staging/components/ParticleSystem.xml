@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+<component name = "ParticleSystem" extends = "Group">
+  <interface>
+    <function name="start"/>
+    <function name="stop"/>
+  </interface>
+  <script type = "text/brightscript" uri="ParticleSystem.brs">
+  </script>
+  <children >
+     <Timer id = "timer" repeat="true" duration="0.016"/>
+  </children>
+</component>
