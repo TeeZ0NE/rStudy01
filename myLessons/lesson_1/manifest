@@ -1,0 +1,16 @@
+## Channel icons
+##### Image size 4 mm_icon_focus_hd: 290x218px
+mm_icon_focus_hd=pkg:/images/channel_logo_hd.png
+## Splash screen
+#### Image size 4 splash screen
+splash_screen_hd=pkg:/images/splash_hd.png
+## Channel details
+title=Roku Lesson 1
+subtitle=Some description of main title
+screensaver_title=TeeZ0NE
+major_version=1
+minor_version=0
+build_version=0
+### Custom values
+custom_field_1=Hi_from_crash
+custom_field_2=TeeZ0NE
