@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="category_screen"
+  extends="Group"
+  >
+  <script type="text/brightscript" uri="pkg:/components/screens/category_screen.brs" />
+  <children>
+    <!-- color="0x000000" -->
+    <Label
+      translation="[75, 150]"
+      id="env"
+      font="font:LargeBoldSystemFont"
+      text="PICK A CATEGORY:"/>
+    <RadioButtonList
+      id="category_list"
+      translation="[100, 200]"
+      itemSize="[400,48]"
+      >
+      <ContentNode id="categories" role="content">
+        <category_node title="Drama" feed_url="http://127.0.0.1:3000/roku_lessons/drama.json" comment="Drama node"/>
+        <category_node title="Comedy" feed_url="http://localhost:3000/roku_lessons/comedy.json" comment
+          ="Comedy node"/>
+        <category_node title="Horror" feed_url="http://localhost:3000/roku_lessons/horror.json" comment="Horror node"/>
+      </ContentNode>
+    </RadioButtonList>
+  </children>
+</component>
