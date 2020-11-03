@@ -22,8 +22,8 @@
       >
       <ContentNode id="categories" role="content">
         <category_node title="DRAMA" feed_url="https://jsonplaceholder.typicode.com/photos"/>
-        <category_node title="COMEDY" feed_url="https://jsonplaceholder.typicode.com/photos/2"/>
-        <category_node title="HORROR" feed_url="https://jsonplaceholder.typicode.com/photos/3"/>
+        <category_node title="COMEDY" feed_url="https://jsonplaceholder.typicode.com/photos" comment="The same"/>
+        <category_node title="HORROR" feed_url="https://jsonplaceholder.typicode.com/photos" comment="Category is Horror"/>
       </ContentNode>
     </RadioButtonList>
   </children>

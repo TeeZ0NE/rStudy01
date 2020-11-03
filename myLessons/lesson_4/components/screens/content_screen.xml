@@ -3,7 +3,7 @@
     <script type="text/brightscript" uri="pkg:/components/screens/content_screen.brs" />
     <interface>
         <field id="feed_data"
-            type="assocarray"
+            type="array"
             onChange="onFeedChanged"
             />
     </interface>
@@ -22,7 +22,7 @@
             caption1NumLines="1"
             caption2NumLines="1"
             numColumns="3"
-            numRows="4"
+            numRows="2"
             />
     </children>
 </component>

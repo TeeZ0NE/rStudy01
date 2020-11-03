@@ -35,7 +35,7 @@ sub onFeedResponse(obj)
         m.category_screen.visible = false
         m.content_screen.visible = true
         ' assign data to content screen
-        ? "Type: ";type(data)
+        ? "Type: ";type(data), "data: ";data[0]
         m.content_screen.feed_data = data
     else
         ? "FEED RESPONSE IS EMPTY!"
