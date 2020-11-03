@@ -9,16 +9,15 @@ function request()
   http.RetainBodyOnError(true)
   port = createObject("roMessagePort")
   http.setPort(port)
-  ? "port: ";port
-  ' http.setCertificatesFile("common:/certs/ca-bundle.crt")
+  http.setCertificatesFile("common:/certs/ca-bundle.crt")
   ' http.InitClientCertificates()
   http.enablehostverification(false)
   http.enablepeerverification(false)
   http.setUrl(url)
   if http.AsyncGetToString() then
-    ? "Async url: ";url
-    msg = wait(1000, port)
+    msg = wait(10000, port)
     if (type(msg) = "roUrlEvent")
+      'HTTP response code can be <0 for Roku-defined errors
       if (msg.getresponsecode() > 0 and msg.getresponsecode() < 400)
         m.top.response = msg.getstring()
       else
@@ -32,5 +31,4 @@ function request()
       http.asynccancel()
     end if
   end if
-  ? msg
 end function
