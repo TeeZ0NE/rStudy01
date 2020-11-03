@@ -9,8 +9,9 @@ function request()
   http.RetainBodyOnError(true)
   port = createObject("roMessagePort")
   http.setPort(port)
-  http.setCertificatesFile("common:/certs/ca-bundle.crt")
-  http.InitClientCertificates()
+  ? "port: ";port
+  ' http.setCertificatesFile("common:/certs/ca-bundle.crt")
+  ' http.InitClientCertificates()
   http.enablehostverification(false)
   http.enablepeerverification(false)
   http.setUrl(url)
@@ -26,7 +27,7 @@ function request()
       end if
       http.asynccancel()
     else if (msg = invalid)
-      ? "feed load failed."
+      ? "feed load failed. ";msg
       m.top.response = ""
       http.asynccancel()
     end if
