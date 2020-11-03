@@ -16,10 +16,10 @@
       itemSize="[400,48]"
       >
       <ContentNode id="categories" role="content">
-        <category_node title="Drama" feed_url="http://127.0.0.1:3000/roku_lessons/drama.json" comment="Drama node"/>
-        <category_node title="Comedy" feed_url="http://localhost:3000/roku_lessons/comedy.json" comment
+        <category_node title="Drama" feed_url="http://192.168.0.183:3000/roku_lessons/drama.json" comment="Drama node"/>
+        <category_node title="Comedy" feed_url="http://192.168.0.183:3000/roku_lessons/comedy.json" comment
           ="Comedy node"/>
-        <category_node title="Horror" feed_url="http://localhost:3000/roku_lessons/horror.json" comment="Horror node"/>
+        <category_node title="Horror" feed_url="http://192.168.0.183:3000/roku_lessons/horror.json" comment="Horror node"/>
       </ContentNode>
     </RadioButtonList>
   </children>

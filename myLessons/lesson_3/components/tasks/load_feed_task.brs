@@ -9,13 +9,14 @@ function request()
   http.RetainBodyOnError(true)
   port = createObject("roMessagePort")
   http.setPort(port)
-  ' http.setCertificatesFile("common:/certs/ca-bundle.crt")
-  ' http.InitClientCertificates()
+  http.setCertificatesFile("common:/certs/ca-bundle.crt")
+  http.InitClientCertificates()
   http.enablehostverification(false)
   http.enablepeerverification(false)
   http.setUrl(url)
   if http.AsyncGetToString() then
-    msg = wait(10000, port)
+    ? "Async url: ";url
+    msg = wait(1000, port)
     if (type(msg) = "roUrlEvent")
       if (msg.getresponsecode() > 0 and msg.getresponsecode() < 400)
         m.top.response = msg.getstring()
@@ -30,4 +31,5 @@ function request()
       http.asynccancel()
     end if
   end if
+  ? msg
 end function
