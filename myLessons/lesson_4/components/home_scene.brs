@@ -4,6 +4,8 @@ function init()
     m.content_screen = m.top.findNode("content_screen")
 
     m.category_screen.observeField("category_selected", "onCategorySelected")
+    category_label = m.category_screen.findNode("env")
+    category_label.text = UCase("Select a category:")
     m.category_screen.setFocus(true)
 end function
 
