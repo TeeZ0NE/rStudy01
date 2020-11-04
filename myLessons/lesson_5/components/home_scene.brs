@@ -64,7 +64,7 @@ end sub
 ' Main Remote keypress handler
 function onKeyEvent(key, press) as boolean
 	? "[home_scene] onKeyEvent", key, press
-	if key = "back" and press
+	if press and key = "back"
 		if m.content_screen.visible
 			m.content_screen.visible = false
 			m.category_screen.visible = true
