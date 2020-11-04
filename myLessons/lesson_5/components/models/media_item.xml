@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="category_node" extends="ContentNode">
+	<interface>
+		<field id="feed_url" type="string" />
+		<field id="comment" type="string" value="The same" />
+	</interface>
+</component>
