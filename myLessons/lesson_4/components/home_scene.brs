@@ -12,12 +12,13 @@ sub onCategorySelected(obj)
     ? "onCategorySelected data: ";obj.getData()
     list = m.category_screen.findNode("category_list")
     ? "onCategorySelected checkedItem: ";list.checkedItem
-    ? "onCategorySelected selected ContentNode: ";list.content.getChild(obj.getData())
     item = list.content.getChild(obj.getData())
+    ? "onCategorySelected selected ContentNode: ";item
+    m.content_screen.category_title = item.title
     loadFeed(item.feed_url)
 end sub
 
-sub loadFeed(url)
+sub loadFeed(url as string)
     ' create a task
     m.feed_task = createObject("roSGNode", "load_feed_task")
     m.feed_task.observeField("response", "onFeedResponse")
@@ -35,7 +36,6 @@ sub onFeedResponse(obj)
         m.category_screen.visible = false
         m.content_screen.visible = true
         ' assign data to content screen
-        ? "Type: ";type(data), "data: ";data[0]
         m.content_screen.feed_data = data
     else
         ? "FEED RESPONSE IS EMPTY!"

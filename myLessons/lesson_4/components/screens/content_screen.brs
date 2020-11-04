@@ -5,7 +5,7 @@ end sub
 
 sub onFeedChanged(obj)
     feed = obj.getData()
-    m.header.text = "My title"
+    m.header.text = m.top.category_title
     postercontent = createObject("roSGNode", "ContentNode")
     for each item in feed
         node = createObject("roSGNode", "ContentNode")
