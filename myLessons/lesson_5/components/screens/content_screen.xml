@@ -7,6 +7,7 @@
             onChange="onFeedChanged"
             />
         <field id="category_title" type="string" />
+        <field id="content_selected" type="assocarray" alias="content_grid.itemSelected" />
     </interface>
     <children>
         <Label

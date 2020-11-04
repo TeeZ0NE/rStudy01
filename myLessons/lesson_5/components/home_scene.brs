@@ -2,8 +2,13 @@ function init()
     ? "[home_scene] init"
     m.category_screen = m.top.findNode("category_screen")
     m.content_screen = m.top.findNode("content_screen")
+    m.details_screen = m.top.findNode("details_screen")
+    m.videoplayer = m.top.findNode("videoplayer")
 
     m.category_screen.observeField("category_selected", "onCategorySelected")
+    m.content_screen.observeField("content_selected", "onContentSelected")
+    m.videoplayer.observeField("play_button_pressed", "onPlayButtonPressed")
+
     category_label = m.category_screen.findNode("env")
     category_label.text = UCase("Select a category:")
     m.category_screen.setFocus(true)
@@ -46,7 +51,29 @@ end sub
 
 
 ' Main Remote keypress handler
-function onKeyEvent(key, press) as boolean
-    ? "[home_scene] onKeyEvent", key, press
+function onKeyEvent(key as string, press as boolean) as boolean
+    if press and key = "back"
+        if m.content_screen.visible
+            m.content_screen.visible = false
+            m.category_screen.visible = true
+            m.category_screen.setFocus(true)
+            return true
+        end if
+    end if
     return false
 end function
+
+sub onContentSelected(obj)
+    selected_index = obj.getData()
+    ? "content selected_index: ";selected_index
+    item = m.content_screen.findNode("content_grid").content.getChild(selected_index)
+    m.details_screen.content = item
+    m.content_screen.visible = false
+    m.details_screen.visible = true
+end sub
+
+sub onPlayButtonPressed(obj)
+    m.details_screen.visible = false
+    m.videoplayer.visible = true
+    m.videoplayer.setFocus(true)
+end sub

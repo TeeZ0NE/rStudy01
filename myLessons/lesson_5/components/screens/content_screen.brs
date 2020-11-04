@@ -1,6 +1,7 @@
 sub init()
     m.content_grid = m.top.FindNode("content_grid")
     m.header = m.top.FindNode("header")
+    m.top.observeField("visible", "onVisibleChange")
 end sub
 
 sub onFeedChanged(obj)
@@ -25,4 +26,10 @@ sub showpostergrid(content)
     m.content_grid.content = content
     m.content_grid.visible = true
     m.content_grid.setFocus(true)
+end sub
+
+sub onVisibleChange()
+    if m.top.visible = true then
+        m.content_grid.setFocus(true)
+    end if
 end sub
