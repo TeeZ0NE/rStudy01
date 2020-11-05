@@ -11,7 +11,7 @@ function init()
 
 	m.category_screen.setFocus(true)
 
-	' initVideoPlayer()
+	initVideoPlayer()
 end function
 
 sub onCategorySelected(obj)
@@ -33,8 +33,7 @@ sub onContentSelected(obj)
 	m.content_screen.visible = false
 	m.details_screen.visible = true
 	m.videoplayer.content = m.selected_media
-	m.videoplayer.control = "prebuffer"
-	? "Video Content ";m.videoplayer.content.url
+	m.videoplayer.control = "prebuffer" 'm.videoplayer.content.url
 end sub
 
 sub onPlayButtonPressed(obj)
@@ -63,17 +62,28 @@ sub onFeedResponse(obj)
 		' assign data to content screen
 		m.content_screen.feed_data = data
 	else
-		? "FEED RESPONSE IS EMPTY!"
+		? UCase("feed response is empty!")
 	end if
 end sub
 
 sub initVideoPlayer()
-	m.videoplayer.enableCoockes()
-	m.videoplayer.setCertificatesFiles("common:/certs/ca-bundle.crt")
+	m.videoplayer.enableCookies()
+	m.videoplayer.setCertificatesFile("common:/certs/ca-bundle.crt")
 	m.videoplayer.initClientCertificates()
 	m.videoplayer.observeFieldScoped("position", "onPlayerPositionChanged")
 	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
 end sub
+
+sub onPlayerPositionChanged(obj)
+	' TimeLine
+	? "Player Position: ";obj.getData()
+end sub
+
+sub onPlayerStateChanged(obj)
+	' buffering, playing, paused
+	? "Player state: ";obj.getData()
+end sub
+
 
 ' Main Remote keypress handler
 function onKeyEvent(key, press) as boolean
