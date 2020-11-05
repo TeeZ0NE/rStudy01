@@ -4,6 +4,7 @@ function init() as void
 	m.content_screen = m.top.findNode("content_screen")
 	m.details_screen = m.top.findNode("details_screen")
 	m.videoplayer = m.top.findNode("videoplayer")
+	m.error_dialog = m.top.findNode("error_modal_dialog")
 
 	m.category_screen.observeField("category_selected", "onCategorySelected")
 	m.content_screen.observeField("content_selected", "onContentSelected")
@@ -87,8 +88,8 @@ sub onPlayerStateChanged(obj as object) as void
 	state = obj.getData()
 	? "Player state: ";state
 	if state = "error" then
-		? "VideoPlayer error message: ";m.videoplayer.errorMsg
-		? "VideoPlayer error code: ";m.videoplayer.errorCode
+		errorMessage = m.videoplayer.errorMsg + Chr(10) + "Error Code: " + m.videoplayer.errorCode.toStr()
+		showErrorDialog(errorMessage)
 	else if state = "finished" then
 		closeVideo()
 	end if
@@ -98,6 +99,14 @@ sub closeVideo() as void
 	m.videoplayer.control = "stop"
 	m.videoplayer.visible = false
 	m.details_screen.visible = true
+end sub
+
+sub showErrorDialog(message as string) as void
+	m.error_dialog.title = "ErroR"
+	m.error_dialog.message = message
+	m.error_dialog.visible = true
+	' Set dialog on top
+	m.top.dialog = m.error_dialog
 end sub
 
 
@@ -118,6 +127,7 @@ function onKeyEvent(key as string, press as boolean) as boolean
 		else if m.videoplayer.visible
 			m.videoplayer.visible = false
 			m.details_screen.visible = true
+			closeVideo()
 			m.details_screen.setFocus(true)
 			return true
 		end if
