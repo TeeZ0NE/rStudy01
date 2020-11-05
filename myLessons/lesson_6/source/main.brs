@@ -1,4 +1,4 @@
-sub main()
+sub main() as void
 	m.port = createObject("roMessagePort")
 	screen = createObject("roSGScreen")
 	screen.setMessagePort(m.port)

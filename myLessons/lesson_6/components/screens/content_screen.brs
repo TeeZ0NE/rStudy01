@@ -1,10 +1,10 @@
-sub init()
+sub init() as void
 	m.content_grid = m.top.FindNode("content_grid")
 	m.header = m.top.FindNode("header")
 	m.top.observeField("visible", "onVisibleChange")
 end sub
 
-sub onFeedChanged(obj)
+sub onFeedChanged(obj as object) as void
 	feed = obj.getData()
 	category_title = m.top.category_title
 	m.header.text = category_title
@@ -23,14 +23,14 @@ sub onFeedChanged(obj)
 	showpostergrid(postercontent)
 end sub
 
-sub showpostergrid(content)
+sub showpostergrid(content as object) as void
 	m.content_grid.content = content
 	m.content_grid.visible = true
 	m.content_grid.setFocus(true)
 end sub
 
 ' set proper focus to content_grid when we return from Details Screen
-sub onVisibleChange()
+sub onVisibleChange() as void
 	if m.top.visible = true then
 		m.content_grid.setFocus(true)
 	end if

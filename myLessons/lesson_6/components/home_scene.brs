@@ -1,4 +1,4 @@
-function init()
+function init() as void
 	? "[home_scene] init"
 	m.category_screen = m.top.findNode("category_screen")
 	m.content_screen = m.top.findNode("content_screen")
@@ -14,7 +14,7 @@ function init()
 	initVideoPlayer()
 end function
 
-sub onCategorySelected(obj)
+sub onCategorySelected(obj as object) as void
 	? "onCategorySelected field: ";obj.getField()
 	? "onCategorySelected data: ";obj.getData()
 	list = m.category_screen.findNode("category_list")
@@ -25,7 +25,7 @@ sub onCategorySelected(obj)
 	loadFeed(item.feed_url)
 end sub
 
-sub onContentSelected(obj)
+sub onContentSelected(obj as object) as void
 	selected_index = obj.getData()
 	? "content selected_index :";selected_index
 	' look up the index using this verbose, dumb technique.
@@ -37,7 +37,7 @@ sub onContentSelected(obj)
 	' m.videoplayer.control = "prebuffer" 'm.videoplayer.content.url
 end sub
 
-sub onPlayButtonPressed(obj)
+sub onPlayButtonPressed(obj as object) as void
 	m.details_screen.visible = false
 	m.videoplayer.visible = true
 	m.videoplayer.setFocus(true)
@@ -46,14 +46,14 @@ sub onPlayButtonPressed(obj)
 	' ? "[Play button pressed]- obj ";obj.getData()
 end sub
 
-sub loadFeed(url)
+sub loadFeed(url as string) as void
 	m.feed_task = createObject("roSGNode", "load_feed_task")
 	m.feed_task.observeField("response", "onFeedResponse")
 	m.feed_task.url = url
 	m.feed_task.control = "RUN"
 end sub
 
-sub onFeedResponse(obj)
+sub onFeedResponse(obj as object) as void
 	response = obj.getData()
 	'turn the JSON string into an Associative Array
 	data = parseJSON(response)
@@ -68,7 +68,7 @@ sub onFeedResponse(obj)
 	end if
 end sub
 
-sub initVideoPlayer()
+sub initVideoPlayer() as void
 	m.videoplayer.enableCookies()
 	m.videoplayer.setCertificatesFile("common:/certs/ca-bundle.crt")
 	m.videoplayer.initClientCertificates()
@@ -77,12 +77,12 @@ sub initVideoPlayer()
 	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
 end sub
 
-sub onPlayerPositionChanged(obj)
+sub onPlayerPositionChanged(obj as object) as void
 	' TimeLine
 	? "Player Position: ";obj.getData()
 end sub
 
-sub onPlayerStateChanged(obj)
+sub onPlayerStateChanged(obj as object) as void
 	' buffering, playing, paused, error, finished
 	state = obj.getData()
 	? "Player state: ";state
@@ -94,7 +94,7 @@ sub onPlayerStateChanged(obj)
 	end if
 end sub
 
-sub closeVideo()
+sub closeVideo() as void
 	m.videoplayer.control = "stop"
 	m.videoplayer.visible = false
 	m.details_screen.visible = true
@@ -102,7 +102,7 @@ end sub
 
 
 ' Main Remote keypress handler
-function onKeyEvent(key, press) as boolean
+function onKeyEvent(key as string, press as boolean) as boolean
 	? "[home_scene] onKeyEvent", key, press
 	if press and key = "back"
 		if m.content_screen.visible
