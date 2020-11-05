@@ -21,6 +21,7 @@ sub onCategorySelected(obj)
 	? "onCategorySelected checkedItem: ";list.checkedItem
 	? "onCategorySelected selected ContentNode: ";list.content.getChild(obj.getData())
 	item = list.content.getChild(obj.getData())
+	m.content_screen.category_title = item.title
 	loadFeed(item.feed_url)
 end sub
 
@@ -32,14 +33,15 @@ sub onContentSelected(obj)
 	m.details_screen.content = m.selected_media
 	m.content_screen.visible = false
 	m.details_screen.visible = true
-	m.videoplayer.content = m.selected_media
-	m.videoplayer.control = "prebuffer" 'm.videoplayer.content.url
+
+	' m.videoplayer.control = "prebuffer" 'm.videoplayer.content.url
 end sub
 
 sub onPlayButtonPressed(obj)
 	m.details_screen.visible = false
 	m.videoplayer.visible = true
 	m.videoplayer.setFocus(true)
+	m.videoplayer.content = m.selected_media
 	m.videoplayer.control = "play"
 	' ? "[Play button pressed]- obj ";obj.getData()
 end sub
@@ -70,6 +72,7 @@ sub initVideoPlayer()
 	m.videoplayer.enableCookies()
 	m.videoplayer.setCertificatesFile("common:/certs/ca-bundle.crt")
 	m.videoplayer.initClientCertificates()
+	m.videoplayer.notificationInterval = 1
 	m.videoplayer.observeFieldScoped("position", "onPlayerPositionChanged")
 	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
 end sub
@@ -80,8 +83,21 @@ sub onPlayerPositionChanged(obj)
 end sub
 
 sub onPlayerStateChanged(obj)
-	' buffering, playing, paused
-	? "Player state: ";obj.getData()
+	' buffering, playing, paused, error, finished
+	state = obj.getData()
+	? "Player state: ";state
+	if state = "error" then
+		? "VideoPlayer error message: ";m.videoplayer.errorMsg
+		? "VideoPlayer error code: ";m.videoplayer.errorCode
+	else if state = "finished" then
+		closeVideo()
+	end if
+end sub
+
+sub closeVideo()
+	m.videoplayer.control = "stop"
+	m.videoplayer.visible = false
+	m.details_screen.visible = true
 end sub
 
 

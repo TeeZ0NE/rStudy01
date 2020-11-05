@@ -6,13 +6,14 @@ end sub
 
 sub onFeedChanged(obj)
 	feed = obj.getData()
-	m.header.text = m.top.category_title
+	category_title = m.top.category_title
+	m.header.text = category_title
 	postercontent = createObject("roSGNode", "ContentNode")
 	for each item in feed
 		node = createObject("roSGNode", "ContentNode")
 		node.streamformat = m.top.stream_format
 		node.title = item.title
-		node.url = m.top.test_video_url
+		node.url = getVideoUrl(category_title)
 		node.description = item.id
 		node.HDGridPosterURL = item.thumbnailUrl
 		node.shortDescriptionLine1 = item.title
@@ -33,4 +34,12 @@ sub onVisibleChange()
 	if m.top.visible = true then
 		m.content_grid.setFocus(true)
 	end if
+end sub
+
+' Get correct or broken video URL
+sub getVideoUrl(title as string) as string
+	if LCase(title) = "horror" then
+		return m.top.broken_video_url
+	end if
+	return m.top.test_video_url
 end sub
