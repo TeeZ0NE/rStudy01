@@ -10,6 +10,8 @@ function init()
 	m.details_screen.observeField("play_button_pressed", "onPlayButtonPressed")
 
 	m.category_screen.setFocus(true)
+
+	' initVideoPlayer()
 end function
 
 sub onCategorySelected(obj)
@@ -23,20 +25,24 @@ sub onCategorySelected(obj)
 end sub
 
 sub onContentSelected(obj)
-	' note that you do NOT get the content node you want, just an index.
 	selected_index = obj.getData()
 	? "content selected_index :";selected_index
 	' look up the index using this verbose, dumb technique.
-	item = m.content_screen.findNode("content_grid").content.getChild(selected_index)
-	m.details_screen.content = item
+	m.selected_media = m.content_screen.findNode("content_grid").content.getChild(selected_index)
+	m.details_screen.content = m.selected_media
 	m.content_screen.visible = false
 	m.details_screen.visible = true
+	m.videoplayer.content = m.selected_media
+	m.videoplayer.control = "prebuffer"
+	? "Video Content ";m.videoplayer.content.url
 end sub
 
 sub onPlayButtonPressed(obj)
 	m.details_screen.visible = false
 	m.videoplayer.visible = true
 	m.videoplayer.setFocus(true)
+	m.videoplayer.control = "play"
+	' ? "[Play button pressed]- obj ";obj.getData()
 end sub
 
 sub loadFeed(url)
@@ -59,6 +65,14 @@ sub onFeedResponse(obj)
 	else
 		? "FEED RESPONSE IS EMPTY!"
 	end if
+end sub
+
+sub initVideoPlayer()
+	m.videoplayer.enableCoockes()
+	m.videoplayer.setCertificatesFiles("common:/certs/ca-bundle.crt")
+	m.videoplayer.initClientCertificates()
+	m.videoplayer.observeFieldScoped("position", "onPlayerPositionChanged")
+	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
 end sub
 
 ' Main Remote keypress handler

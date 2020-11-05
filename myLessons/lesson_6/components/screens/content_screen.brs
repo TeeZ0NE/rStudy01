@@ -10,13 +10,13 @@ sub onFeedChanged(obj)
 	postercontent = createObject("roSGNode", "ContentNode")
 	for each item in feed
 		node = createObject("roSGNode", "ContentNode")
-		node.streamformat = item.albumId
+		node.streamformat = m.top.stream_format
 		node.title = item.title
-		node.url = item.url
+		node.url = m.top.test_video_url
 		node.description = item.id
-		node.HDGRIDPOSTERURL = item.thumbnailUrl
-		node.SHORTDESCRIPTIONLINE1 = item.title
-		node.SHORTDESCRIPTIONLINE2 = item.url
+		node.HDGridPosterURL = item.thumbnailUrl
+		node.shortDescriptionLine1 = item.title
+		node.shortDescriptionLine2 = item.url
 		postercontent.appendChild(node)
 	end for
 	showpostergrid(postercontent)

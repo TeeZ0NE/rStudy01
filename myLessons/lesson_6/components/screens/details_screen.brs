@@ -16,7 +16,7 @@ end sub
 
 sub OnContentChange(obj)
 	item = obj.getData()
-	? item
+	? "[details_screen] onContentChange ";item
 	m.title.text = item.title
 	m.description.text = item.url
 	m.thumbnail.uri = item.HDGridPosterURL

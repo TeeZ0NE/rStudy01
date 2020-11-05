@@ -7,6 +7,7 @@
             onChange="onFeedChanged"
             />
         <field id="category_title" type="string" />
+
     </interface>
     <children>
         <Label
