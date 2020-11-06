@@ -38,7 +38,7 @@ end sub
 
 ' Get correct or broken video URL
 sub getVideoUrl(title as string) as string
-	if LCase(title) = "horror" then
+	if LCase(title) = "broken video url" then
 		return m.top.broken_video_url
 	end if
 	return m.top.test_video_url

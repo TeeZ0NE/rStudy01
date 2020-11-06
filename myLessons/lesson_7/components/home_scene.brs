@@ -1,5 +1,6 @@
 function init() as void
 	? "[home_scene] init"
+	m.configFile = m.top.configfile
 	m.category_screen = m.top.findNode("category_screen")
 	m.content_screen = m.top.findNode("content_screen")
 	m.details_screen = m.top.findNode("details_screen")
@@ -51,6 +52,7 @@ end sub
 sub loadFeed(url as string) as void
 	m.feed_task = createObject("roSGNode", "load_feed_task")
 	m.feed_task.observeField("response", "onFeedResponse")
+	m.feed_task.observeField("error", "onFeedError")
 	m.feed_task.url = url
 	m.feed_task.control = "RUN"
 end sub
@@ -66,8 +68,12 @@ sub onFeedResponse(obj as object) as void
 		' assign data to content screen
 		m.content_screen.feed_data = data
 	else
-		? UCase("feed response is empty!")
+		showErrorDialog(UCase("feed response is empty!"))
 	end if
+end sub
+
+sub onFeedError(obj as object) as void
+	showErrorDialog(obj.getData())
 end sub
 
 sub initVideoPlayer() as void
@@ -103,7 +109,7 @@ sub closeVideo() as void
 end sub
 
 sub showErrorDialog(message as string) as void
-	m.error_dialog.title = "ErroR"
+	m.error_dialog.title = "ErroR!"
 	m.error_dialog.message = message
 	m.error_dialog.visible = true
 	' Set dialog on top
@@ -113,13 +119,18 @@ end sub
 sub loadConfig() as void
 	m.config_task = CreateObject("roSGNode", "load_config_task")
 	m.config_task.observeField("filedata", "onConfigResponse")
-	m.config_task.filepath = "resources/config.json"
+	m.config_task.observeField("error", "onConfigError")
+	m.config_task.filepath = m.configFile
 	m.config_task.control = "RUN"
 end sub
 
 sub onConfigResponse(obj as object) as void
 	params = { config: obj.getData() }
 	m.category_screen.callFunc("updateConfig", params)
+end sub
+
+sub onConfigError(obj as object) as void
+	showErrorDialog(obj.getData())
 end sub
 
 ' Main Remote keypress handler

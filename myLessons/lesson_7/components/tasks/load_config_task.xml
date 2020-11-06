@@ -3,6 +3,7 @@
   <interface>
     <field id="filepath" type="string" />
     <field id="filedata" type="assocArray" />
+    <field id="error" type="string" />
   </interface>
   <script type="text/brightscript" uri="pkg:/components/tasks/load_config_task.brs" />
 

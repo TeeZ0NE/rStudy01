@@ -12,9 +12,14 @@
       "comment": "Comedy comment"
     },
     {
-      "title": "Horror",
+      "title": "Broken video URL",
       "feed_url": "photos",
       "comment": "Video URL here is broken"
+    },
+    {
+      "title": "Broken category",
+      "feed_url": "photosError",
+      "comment": "Url is broken"
     }
   ]
 }
