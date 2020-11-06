@@ -4,9 +4,21 @@ function init() as void
 	m.top.observeField("visible", "onVisibleChange")
 end function
 
-' set proper focus to rowList in case if return from Content Screen
 sub onVisibleChange() as void
 	if m.top.visible = true then
 		m.category_list.setFocus(true)
 	end if
 end sub
+
+function updateConfig(params as object) as void
+	categories = params.config.categories
+	contentNode = CreateObject("roSGNode", "contentNode")
+	for each category in categories
+		node = CreateObject("roSGNode", "category_node")
+		node.title = category.title
+		node.feed_url = params.config.host + category.feed_url
+		node.comment = category.comment
+		contentNode.appendChild(node)
+	end for
+	m.category_list.content = contentNode
+end function

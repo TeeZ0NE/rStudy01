@@ -118,7 +118,8 @@ sub loadConfig() as void
 end sub
 
 sub onConfigResponse(obj as object) as void
-	? "[home scene] config data: ";obj.getData()
+	params = { config: obj.getData() }
+	m.category_screen.callFunc("updateConfig", params)
 end sub
 
 ' Main Remote keypress handler
