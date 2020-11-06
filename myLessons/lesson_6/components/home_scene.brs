@@ -74,8 +74,8 @@ sub initVideoPlayer() as void
 	m.videoplayer.setCertificatesFile("common:/certs/ca-bundle.crt")
 	m.videoplayer.initClientCertificates()
 	m.videoplayer.notificationInterval = 1
-	m.videoplayer.observeFieldScoped("position", "onPlayerPositionChanged")
-	m.videoplayer.observeFieldScoped("state", "onPlayerStateChanged")
+	m.videoplayer.observeField("position", "onPlayerPositionChanged")
+	m.videoplayer.observeField("state", "onPlayerStateChanged")
 end sub
 
 sub onPlayerPositionChanged(obj as object) as void
