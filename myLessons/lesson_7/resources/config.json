@@ -1,0 +1,20 @@
+{
+  "host": "https://jsonplaceholder.typicode.com/",
+  "categories": [
+    {
+      "title": "Drama",
+      "feed_url": "photos",
+      "comment": ""
+    },
+    {
+      "title": "Comedy",
+      "feed_url": "photos",
+      "comment": "Comedy comment"
+    },
+    {
+      "title": "Horror",
+      "feed_url": "photos",
+      "comment": "Video URL here is broken"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ function init() as void
 	m.category_screen.setFocus(true)
 
 	initVideoPlayer()
+	loadConfig()
 end function
 
 sub onCategorySelected(obj as object) as void
@@ -109,6 +110,16 @@ sub showErrorDialog(message as string) as void
 	m.top.dialog = m.error_dialog
 end sub
 
+sub loadConfig() as void
+	m.config_task = CreateObject("roSGNode", "load_config_task")
+	m.config_task.observeField("filedata", "onConfigResponse")
+	m.config_task.filepath = "resources/config.json"
+	m.config_task.control = "RUN"
+end sub
+
+sub onConfigResponse(obj as object) as void
+	? "[home scene] config data: ";obj.getData()
+end sub
 
 ' Main Remote keypress handler
 function onKeyEvent(key as string, press as boolean) as boolean

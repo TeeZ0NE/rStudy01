@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="load_config_task" extends="task">
+  <interface>
+    <field id="filepath" type="string" />
+    <field id="filedata" type="assocArray" />
+  </interface>
+  <script type="text/brightscript" uri="pkg:/components/tasks/load_config_task.brs" />
+
+</component>

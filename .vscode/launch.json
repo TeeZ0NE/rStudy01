@@ -20,7 +20,8 @@
         "fonts/**/*.*",
         "images/**/*.*",
         "source/**/*.*",
-        "manifest"
+        "manifest",
+        "resources/**/*.*"
       ]
     }
   ]
