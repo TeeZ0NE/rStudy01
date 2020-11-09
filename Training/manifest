@@ -1,0 +1,9 @@
+title=Roku Training
+major_version=1
+minor_version=0
+build_version=0
+ui_resolution=fhd
+## Icons
+mm_icon_focus_fhd=pkg:/images/channel_logo_fhd.png
+mm_icon_focus_hd=pkg:/images/channel_logo_hd.png
+mm_icon_focus_sd=pkg:/images/channel_logo_sd.png

@@ -11,7 +11,7 @@
       "stopOnEntry": false,
       "host": "192.168.0.104",
       "password": "r1c4",
-      "rootDir": "${workspaceFolder}/myLessons/lesson_7",
+      "rootDir": "${workspaceFolder}/Training",
       "enableDebuggerAutoRecovery": false,
       "stopDebuggerOnAppExit": false,
       "files": [
