@@ -7,7 +7,6 @@ function load() as void
   fileFullPath = "pkg:/" + m.top.filePath
   if m.top.filePath <> "" and fileSystem.Exists(fileFullPath)
     config = ReadAsciiFile(fileFullPath)
-    ' ? "[LoadTask] config: ";config
     jsonData = ParseJson(config)
     if jsonData <> invalid
       m.top.filedata = jsonData

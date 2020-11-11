@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="content_grid_item" extends="Group">
+  <interface>
+    <field id="itemContent" type="node" onChange="itemContentChanged"/>
+  </interface>
+  <children>
+    <LayoutGroup layoutDirection="horiz" vertAlignment="center" itemSpacings="20" translation="[0,25]">
+      <Poster
+        id="poster"
+        translation="[5,3]"
+        width="60"
+        height="80" />
+      <LayoutGroup layoutDirection="vert" horizAlignment="left" itemSpacings="0">
+        <Label id="item_text" font="font:MediumSystemFont" color="0xffff00ff" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </children>
+  <script type="text/brightscript" uri="pkg:/components/screens/content_grid_item.brs" />
+</component>

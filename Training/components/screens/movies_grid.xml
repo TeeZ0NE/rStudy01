@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="movies_grid" extends="Group" initialFocus="content_grid">
+  <interface>
+    <field id="feed_data" type="assocarray" onChange="onFeedChanged"/>
+    <field id="hosts" type="assocarray" />
+  </interface>
+  <children>
+    <MarkupGrid
+      id="content_grid"
+      itemComponentName="content_grid_item"
+      itemSize="[200,200]"
+      itemSpacing="[40, 40]"
+      rowHeights="[200, 200]"
+      columnWidths="[240,240,240]"
+      numColumns="4"
+      numRows="3"
+      translation="[100, 100]"
+      />
+  </children>
+  <script type="text/brightscript" uri="pkg:/components/screens/movies_grid.brs" />
+</component>

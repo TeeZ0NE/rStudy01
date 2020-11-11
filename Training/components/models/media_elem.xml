@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="list_node" extends="ContentNode">
+  <interface>
+    <field id="label_text" type="string" />
+    <field id="poster_url" type="string" />
+  </interface>
+</component>

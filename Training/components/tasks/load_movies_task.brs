@@ -18,7 +18,6 @@ function request() as void
     msg = wait(5000, port)
     if (Type(msg) = "roUrlEvent")
       if (msg.GetResponseCode() > 0 and msg.GetResponseCode() < 400)
-        ? "[LoadMovies] msg: ";msg.GetString()
         m.top.response = msg.GetString()
       else
         m.top.error = msg.GetFailureReason() + Chr(10) + "Code: " + msg.GetResponseCode().toStr()

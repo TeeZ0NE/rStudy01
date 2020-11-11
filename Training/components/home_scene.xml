@@ -8,6 +8,9 @@
       id="modal_dialog"
       visible="false"
       title="Info" />
+    <movies_grid
+      id="movies"
+      translation="[0,0]" />
   </children>
   <script type="text/brightscript" uri="pkg:/components/home_scene.brs" />
 </component>

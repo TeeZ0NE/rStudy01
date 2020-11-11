@@ -5,5 +5,12 @@
     "poster_low": "https://image.tmdb.org/t/p/w220_and_h330_face",
     "poster_mid": "https://image.tmdb.org/t/p/w440_and_h660_face"
   },
-  "page_title": "page="
+  "page_title": "page=",
+  "titles": {
+    "error": "Error",
+    "info": "Info"
+  },
+  "messages": {
+    "empty": "Nothing to show!"
+  }
 }
