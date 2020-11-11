@@ -8,14 +8,13 @@
     <MarkupGrid
       id="content_grid"
       itemComponentName="content_grid_item"
-      itemSize="[200,200]"
-      itemSpacing="[40, 40]"
-      rowHeights="[200, 200]"
-      columnWidths="[240,240,240]"
+      itemSpacing="[50, 30]"
       numColumns="4"
       numRows="3"
-      translation="[100, 100]"
-      />
+      itemSize="[200,260]"
+      translation="[100,0]"
+      rowHeights="[270, 200, 200]"
+      columnWidths="[250,260,260,260]" />
   </children>
   <script type="text/brightscript" uri="pkg:/components/screens/movies_grid.brs" />
 </component>

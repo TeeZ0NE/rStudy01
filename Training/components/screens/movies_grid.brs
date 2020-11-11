@@ -12,6 +12,7 @@ sub onFeedChanged(data as object) as void
     node = CreateObject("roSGNode", "list_node")
     node.poster_url = hosts.poster_low + item.poster_path
     node.label_text = item.title
+    node.label2_text = item.release_date + " Raiting: " + item.vote_average.ToStr()
     gridContent.appendChild(node)
   end for
   showMarkupGrid(gridContent)

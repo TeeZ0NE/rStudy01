@@ -4,14 +4,21 @@
     <field id="itemContent" type="node" onChange="itemContentChanged"/>
   </interface>
   <children>
-    <LayoutGroup layoutDirection="horiz" vertAlignment="center" itemSpacings="20" translation="[0,25]">
+    <LayoutGroup layoutDirection="vert" vertAlignment="center" itemSpacings="10" translation="[0,0]" horizAlignment="left">
       <Poster
         id="poster"
-        translation="[5,3]"
-        width="60"
-        height="80" />
-      <LayoutGroup layoutDirection="vert" horizAlignment="left" itemSpacings="0">
-        <Label id="item_text" font="font:MediumSystemFont" color="0xffff00ff" />
+        translation="[0,0]"
+        width="0"
+        height="0"
+        />
+      <LayoutGroup layoutDirection="vert" horizAlignment="left">
+        <Label id="item_text"
+          font="font:MediumSystemFont" color="0xffffffff"
+          translation="[0,0]"
+          width="240"
+          vertAlign="bottom" />
+        <Label id="item2_text"
+          font="font:SmallSystemFont"/>
       </LayoutGroup>
     </LayoutGroup>
   </children>

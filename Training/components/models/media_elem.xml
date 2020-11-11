@@ -3,5 +3,6 @@
   <interface>
     <field id="label_text" type="string" />
     <field id="poster_url" type="string" />
+    <field id="label2_text" type="string" />
   </interface>
 </component>
