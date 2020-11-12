@@ -4,22 +4,31 @@
     <field id="itemContent" type="node" onChange="itemContentChanged"/>
   </interface>
   <children>
-    <LayoutGroup layoutDirection="vert" vertAlignment="center" itemSpacings="10" translation="[0,0]" horizAlignment="left">
-      <Poster
-        id="poster"
-        translation="[0,0]"
-        width="0"
-        height="0"
-        />
-      <LayoutGroup layoutDirection="vert" horizAlignment="left">
-        <Label id="item_text"
-          font="font:MediumSystemFont" color="0xffffffff"
-          translation="[0,0]"
-          width="240"
-          vertAlign="bottom" />
-        <Label id="item2_text"
-          font="font:SmallSystemFont"/>
-      </LayoutGroup>
+    <Poster
+      id="poster"
+      translation="[5,0]"
+      width="230"
+      height="240"
+      visible="true"
+      />
+    <Rectangle
+      id="colored_background"
+      color="0x190C21"
+      width="230"
+      height="60"
+      translation="[5,180]" />
+    <LayoutGroup
+      layoutDirection="vert"
+      vertAlignment="top"
+      horizAlignment="left"
+      translation="[10,190]">
+      <Label id="item_text"
+        font="font:SmallSystemFont" color="0xffffffff"
+        width="220"
+        vertAlign="bottom" />
+      <Label id="item2_text"
+        font="font:SmallestSystemFont"
+        width="220" />
     </LayoutGroup>
   </children>
   <script type="text/brightscript" uri="pkg:/components/screens/content_grid_item.brs" />
