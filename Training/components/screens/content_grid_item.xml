@@ -26,7 +26,7 @@
         font="font:SmallSystemFont" color="0xffffffff"
         width="220"
         vertAlign="bottom" />
-      <Label id="item2_text"
+      <Label id="shortdescriptionline2"
         font="font:SmallestSystemFont"
         width="220" />
     </LayoutGroup>

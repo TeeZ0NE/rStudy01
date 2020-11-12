@@ -3,6 +3,7 @@
   <interface>
     <field id="feed_data" type="assocarray" onChange="onFeedChanged"/>
     <field id="hosts" type="assocarray" />
+    <field id="content_selected" type="assocArray" alias="content_grid.itemSelected" />
   </interface>
   <children>
     <MarkupGrid

@@ -1,12 +1,15 @@
-sub init() as void
+sub init()
   ? "[home scene] init"
   m.config = {}
   m.modalDialog = m.top.findNode("modal_dialog")
   m.movies = m.top.findNode("movies")
+
+  m.movies.ObserveField("content_selected", "onContentSelected")
+
   loadConfig()
 end sub
 
-sub loadConfig() as void
+sub loadConfig()
   m.configTask = CreateObject("roSGNode", "load_config_task")
   m.configTask.observeField("filedata", "onConfigResponse")
   m.configTask.observeField("error", "onConfigError")
@@ -20,7 +23,7 @@ sub onConfigResponse(response as object) as void
   loadMovies(url)
 end sub
 
-sub onConfigError(errorMessage as object) as void
+sub onConfigError(errorMessage as object)
   ? "[home ConfigError] ";error
   showDialog({
     "title": m.config.titles.error,
@@ -28,7 +31,7 @@ sub onConfigError(errorMessage as object) as void
   })
 end sub
 
-sub showDialog(dialogData as object) as void
+sub showDialog(dialogData as object)
   if dialogData.title <> invalid and dialogData.title <> ""
     m.modalDialog.title = dialogData.title
   end if
@@ -37,7 +40,7 @@ sub showDialog(dialogData as object) as void
   m.top.dialog = m.modalDialog
 end sub
 
-sub loadMovies(url as string) as void
+sub loadMovies(url as string)
   m.moviesTask = CreateObject("roSgNode", "load_movies_task")
   m.moviesTask.ObserveField("response", "onLoadMoviesResponse")
   m.moviesTask.ObserveField("error", "onLoadMoviesError")
@@ -45,11 +48,10 @@ sub loadMovies(url as string) as void
   m.moviesTask.control = "RUN"
 end sub
 
-sub onLoadMoviesResponse(obj as object) as void
+sub onLoadMoviesResponse(obj as object)
   response = obj.GetData()
   data = ParseJSON(response)
   if data <> invalid
-    ' ? "[Home] movies hosts:";m.config.hosts
     m.movies.hosts = m.config.hosts
     m.movies.feed_data = data
   else
@@ -59,22 +61,21 @@ sub onLoadMoviesResponse(obj as object) as void
   end if
 end sub
 
-sub onLoadMoviesError(errorMessage as object) as void
+sub onLoadMoviesError(errorMessage as object)
   showDialog({
     "title": m.config.titles.error, "message": errorMessage.GetData()
   })
 end sub
 
-function getMarkupGridData() as object
-  data = CreateObject("roSGNode", "ContentNode")
-
-  for i = 1 to 6
-    dataItem = data.CreateChild("list_node")
-    dataItem.poster_url = "http://devtools.web.roku.com/samples/images/Portrait_1.jpg"
-    dataItem.label_text = "Grid item" + stri(i)
-  end for
-  return data
-end function
+sub onContentSelected(obj as object)
+  selectedIndex = obj.GetData()
+  m.selectedMedia = m.movies.findNode("content_grid").content.GetChild(selectedIndex)
+  ? "[home] data";m.selectedMedia
+  showDialog({
+    "title": m.selectedMedia.title,
+    "message": m.config.messages.releaseDate + m.selectedMedia.releaseDate
+  })
+end sub
 
 function onFocusChanged() as void
   ? "[Home] focus changed"
