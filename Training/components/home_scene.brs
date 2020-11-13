@@ -95,9 +95,16 @@ end function
 
 function onKeyEvent(key as string, press as boolean) as boolean
   ? "[Key Event] ";key
-  if press and key = "back"
-    if m.detailScreen <> invalid and m.detailScreen.visible
+  ? "[key back] movies visible";m.movies.visible
+  if press
+    if m.movies.visible and key = "back"
+      m.top.RemoveChild(m.movies)
+      m.movies = invalid
+      m.top.SetFocus(true)
+      return false
+    else if m.detailScreen <> invalid and m.detailScreen.visible and key = "back"
       m.top.RemoveChild(m.detailScreen)
+      m.detailScreen = invalid
       m.movies.visible = true
       m.movies.SetFocus(true)
       return true
