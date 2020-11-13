@@ -12,6 +12,9 @@ sub onFeedChanged(data as object)
     node.title = item.title
     node.description = item.release_date + " Raiting: " + item.vote_average.ToStr()
     node.releaseDate = item.release_date
+    node.overview = item.overview
+    node.vote = item.vote_average
+    node.poster_path = item.poster_path
     gridContent.appendChild(node)
   end for
   showMarkupGrid(gridContent)

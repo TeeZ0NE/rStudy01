@@ -71,10 +71,20 @@ sub onContentSelected(obj as object)
   selectedIndex = obj.GetData()
   m.selectedMedia = m.movies.findNode("content_grid").content.GetChild(selectedIndex)
   ? "[home] data";m.selectedMedia
-  showDialog({
-    "title": m.selectedMedia.title,
-    "message": m.config.messages.releaseDate + m.selectedMedia.releaseDate
-  })
+  showDetailScreen(m.selectedMedia)
+
+  ' showDialog({
+  '   "title": m.selectedMedia.title,
+  '   "message": m.config.messages.releaseDate + m.selectedMedia.releaseDate
+  ' })
+end sub
+
+sub showDetailScreen(mediaData as object)
+  m.movies.visible = false
+  m.detailScreen = CreateObject("roSGNode", "details_screen")
+  m.detailScreen.config = m.config
+  m.detailScreen.content = mediaData
+  m.top.AppendChild(m.detailScreen)
 end sub
 
 function onFocusChanged() as void
@@ -83,17 +93,15 @@ function onFocusChanged() as void
   ' print "Focus on item: " + stri(m.simpleMarkupList.itemUnfocused) + " lost"
 end function
 
-' function onKeyEvent(key as string, press as boolean) as boolean
-'   ? "[Key Event] ";key
-'   handled = false
-'   ' if (m.simpleMarkupList.hasFocus() = true) and (key = "right") and (press = true)
-'   ' m.simpleMarkupGrid.setFocus(true)
-'   ' m.simpleMarkupList.setFocus(false)
-'   ' handled = true
-'   ' else if (m.simpleMarkupGrid.hasFocus() = true) and (key = "left") and (press = true)
-'   ' m.simpleMarkupGrid.setFocus(false)
-'   ' m.simpleMarkupList.setFocus(true)
-'   ' handled = true
-'   ' end if
-'   return handled
-' end function
+function onKeyEvent(key as string, press as boolean) as boolean
+  ? "[Key Event] ";key
+  if press and key = "back"
+    if m.detailScreen <> invalid and m.detailScreen.visible
+      m.top.RemoveChild(m.detailScreen)
+      m.movies.visible = true
+      m.movies.SetFocus(true)
+      return true
+    end if
+  end if
+  return false
+end function

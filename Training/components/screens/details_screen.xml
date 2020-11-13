@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="details_screen" extends="Group">
+  <interface>
+    <field id="content"
+      type="node"
+      alwaysnotify="true"
+      onChange="onContentChange" />
+    <field id="play_btn_pressed"
+      type="integer"
+      alwaysnotify="true"
+      alias="play_btn.buttonSelected" />
+    <field
+      id="config"
+      type="assocArray"
+      />
+  </interface>
+  <children>
+    <Poster
+      height="560"
+      id="image"
+      translation="[100,50]"
+      width="340"
+      />
+    <LayoutGroup
+      horizAlignment="left"
+      layoutDirection="vert"
+      translation="[500, 60]"
+      vertAlignment="top"
+      >
+      <Label
+        color="0xFFFFFF"
+        height="50"
+        font="font:LargeBoldSystemFont"
+        id="title"
+        text="title"
+        translation="[0,0]"
+        width="700"
+        wrap="true"
+        />
+      <Label
+        color="0xFFFFFF"
+        height="50"
+        font="font:SmallSystemFont"
+        id="detail_title"
+        text="title"
+        translation="[0,0]"
+        width="700"
+        wrap="true"
+        />
+      <Label
+        color="0xFFFFFF"
+        font="font:SmallSystemFont"
+        height="305"
+        id="detail_info"
+        text="detail info"
+        translation="[0,0]"
+        width="700"
+        wrap="true"
+        />
+      <Label
+        color="0xFFFFFF"
+        height="75"
+        font="font:MediumSystemFont"
+        id="additional_info"
+        text="Additional"
+        translation="[0,0]"
+        width="700"
+        wrap="true"
+        />
+      <Button
+        id="play_btn"
+        text="Play"
+        translation="[500,400]"
+        />
+    </LayoutGroup>
+  </children>
+  <script type="text/brightscript" uri="pkg:/components/screens/details_screen.brs" />
+</component>

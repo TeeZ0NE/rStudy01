@@ -1,34 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="content_grid_item" extends="Group">
   <interface>
-    <field id="itemContent" type="node" onChange="itemContentChanged"/>
+    <field
+      id="itemContent"
+      type="node" onChange="itemContentChanged"
+      />
   </interface>
   <children>
     <Poster
+      height="240"
       id="poster"
       translation="[5,0]"
-      width="230"
-      height="240"
       visible="true"
+      width="230"
       />
     <Rectangle
-      id="colored_background"
       color="0x190C21"
-      width="230"
       height="60"
-      translation="[5,180]" />
+      id="colored_background"
+      translation="[5,180]"
+      width="230"
+      />
     <LayoutGroup
-      layoutDirection="vert"
-      vertAlignment="top"
       horizAlignment="left"
-      translation="[10,190]">
+      layoutDirection="vert"
+      translation="[10,190]"
+      vertAlignment="top"
+      >
       <Label id="item_text"
         font="font:SmallSystemFont" color="0xffffffff"
+        vertAlign="bottom"
         width="220"
-        vertAlign="bottom" />
-      <Label id="shortdescriptionline2"
+        />
+      <Label
         font="font:SmallestSystemFont"
-        width="220" />
+        id="shortdescriptionline2"
+        width="220"
+        />
     </LayoutGroup>
   </children>
   <script type="text/brightscript" uri="pkg:/components/screens/content_grid_item.brs" />

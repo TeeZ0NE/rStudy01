@@ -1,0 +1,30 @@
+{
+  "api_key": "",
+  "hosts": {
+    "popular_videos": "http://api.themoviedb.org/3/movie/popular",
+    "poster_low": "https://image.tmdb.org/t/p/w220_and_h330_face",
+    "poster_mid": "https://image.tmdb.org/t/p/w440_and_h660_face"
+  },
+  "page_title": "page=",
+  "titles": {
+    "error": "Error",
+    "info": "Info"
+  },
+  "messages": {
+    "audioFormat": "Audio Format: ",
+    "bitrate": "measuredBItrate: ",
+    "duration": "Duration: ",
+    "empty": "Nothing to show!",
+    "releaseDate": "Release Date: ",
+    "streamBitrate": "streamBitrate: ",
+    "videoFormat": "Video Format: "
+  },
+  "details": {
+    "detailInfo": "Detail information:",
+    "releaseDate": "Release Date: ",
+    "vote": "Vote Average: "
+  },
+  "buttons": {
+    "play": "Play Video..."
+  }
+}

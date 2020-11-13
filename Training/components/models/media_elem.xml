@@ -5,5 +5,8 @@
     <field id="poster_url" type="string" />
     <field id="description" type="string" />
     <field id="releaseDate" type="string" />
+    <field id="overview" type="string" />
+    <field id="vote" type="float" />
+    <field id="poster_path" type="string" />
   </interface>
 </component>

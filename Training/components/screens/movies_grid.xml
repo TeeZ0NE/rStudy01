@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <component name="movies_grid" extends="Group" initialFocus="content_grid">
   <interface>
-    <field id="feed_data" type="assocarray" onChange="onFeedChanged"/>
-    <field id="hosts" type="assocarray" />
-    <field id="content_selected" type="assocArray" alias="content_grid.itemSelected" />
+    <field
+      id="feed_data"
+      type="assocarray" onChange="onFeedChanged"
+      />
+    <field
+      id="hosts"
+      type="assocarray"
+      />
+    <field
+      id="content_selected" type="assocArray" alias="content_grid.itemSelected"
+      />
   </interface>
   <children>
     <MarkupGrid
+      columnWidths="[240,240,240,240]"
       id="content_grid"
       itemComponentName="content_grid_item"
+      itemSize="[230,240]"
       itemSpacing="[50, 40]"
       numColumns="4"
       numRows="2"
-      itemSize="[230,240]"
-      translation="[80,80]"
       rowHeights="[240, 240, 240]"
-      columnWidths="[240,240,240,240]" />
+      translation="[80,80]"
+      />
   </children>
   <script type="text/brightscript" uri="pkg:/components/screens/movies_grid.brs" />
 </component>
