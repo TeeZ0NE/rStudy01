@@ -1,5 +1,4 @@
 sub init()
-  ? "[home scene] init"
   m.config = {}
   m.modalDialog = m.top.findNode("modal_dialog")
   m.movies = m.top.findNode("movies")
@@ -68,9 +67,8 @@ sub onLoadMoviesError(errorMessage as object)
 end sub
 
 sub onContentSelected(obj as object)
-  selectedIndex = obj.GetData()
-  m.selectedMedia = m.movies.findNode("content_grid").content.GetChild(selectedIndex)
-  ? "[home] data";m.selectedMedia
+  m.selectedIndex = obj.GetData()
+  m.selectedMedia = m.movies.findNode("content_grid").content.GetChild(m.selectedIndex)
   showDetailScreen(m.selectedMedia)
 
   ' showDialog({
@@ -82,33 +80,105 @@ end sub
 sub showDetailScreen(mediaData as object)
   m.movies.visible = false
   m.detailScreen = CreateObject("roSGNode", "details_screen")
+  m.detailScreen.ObserveField("play_button_pressed", "onPlayButtonPressed")
   m.detailScreen.config = m.config
   m.detailScreen.content = mediaData
   m.top.AppendChild(m.detailScreen)
+  m.detailScreen.SetFocus(true)
 end sub
 
-function onFocusChanged() as void
-  ? "[Home] focus changed"
-  ' print "Focus on item: " + stri(m.simpleMarkupList.itemFocused)
-  ' print "Focus on item: " + stri(m.simpleMarkupList.itemUnfocused) + " lost"
-end function
-
 function onKeyEvent(key as string, press as boolean) as boolean
-  ? "[Key Event] ";key
-  ? "[key back] movies visible";m.movies.visible
   if press
     if m.movies.visible and key = "back"
-      m.top.RemoveChild(m.movies)
-      m.movies = invalid
+      closeMovies()
       m.top.SetFocus(true)
       return false
     else if m.detailScreen <> invalid and m.detailScreen.visible and key = "back"
-      m.top.RemoveChild(m.detailScreen)
-      m.detailScreen = invalid
-      m.movies.visible = true
-      m.movies.SetFocus(true)
+      closeDetails()
       return true
+    else if m.videoScreen <> invalid and m.videoScreen.visible
+      if key = "back"
+        closeVideo()
+        return true
+      else if key = "up" and m.videoPlayer.state = "playing"
+        ? "Video screen up pressed"
+        showVideoInfo()
+        return false
+      end if
     end if
   end if
   return false
+end function
+
+sub onPlayButtonPressed(obj as object)
+  m.videoScreen = CreateObject("roSGNode", "video_screen")
+  m.detailScreen.visible = false
+  m.top.AppendChild(m.videoScreen)
+  m.videoScreen.SetFocus(true)
+  m.videoPlayer = m.videoScreen.findNode("video_player")
+  configVideoPlayer()
+  m.videoPlayer.content = m.selectedMedia
+  m.videoPlayer.SetFocus(true)
+  m.videoPlayer.control = "play"
+end sub
+
+sub configVideoPlayer()
+  m.videoPlayer.enableCookies()
+  m.videoPlayer.observeField("position", "onPlayerPositionChanged")
+  m.videoPlayer.observeField("state", "onPlayerStateChanged")
+end sub
+
+sub closeMovies()
+  m.top.RemoveChild(m.movies)
+  m.movies = invalid
+end sub
+
+sub closeVideo()
+  m.videoPlayer.control = "stop"
+  m.detailScreen.visible = true
+  m.top.RemoveChild(m.videoScreen)
+  m.videoScreen = invalid
+  m.videoPlayer = invalid
+  m.detailScreen.SetFocus(true)
+end sub
+
+sub closeDetails()
+  m.top.RemoveChild(m.detailScreen)
+  m.detailScreen = invalid
+  m.movies.visible = true
+  m.movies.findNode("content_grid").setFocus(true)
+end sub
+
+sub showVideoInfo()
+  videoInfo = getVideoInfo()
+  streamBitrate = getMeasuredBitrate(videoInfo.streamBitrate)
+  duration = getDuration(videoInfo.duration)
+  durationStr = duration.hours.toStr() + ":" + duration.minutes.toStr() + ":" + duration.seconds.toStr()
+  message = m.config.messages.videoFormat + videoInfo.videoFormat + ", " + m.config.messages.audioFormat + videoInfo.audioFormat + "," + chr(10) + m.config.messages.bitrate + videoInfo.measuredBitrate.toStr() + ", " + m.config.messages.streamBitrate + streamBitrate.toStr() + "," + chr(10) + m.config.messages.duration + durationStr
+  showDialog({
+    "message": message
+  })
+end sub
+
+function getVideoInfo() as object
+  return {
+    "videoFormat": m.videoPlayer.videoFormat,
+    "audioFormat": m.videoPlayer.audioFormat,
+    "duration": m.videoPlayer.duration,
+    "streamBitrate": m.videoPlayer.streamInfo.streamBitrate,
+    "measuredBitrate": m.videoPlayer.streamInfo.measuredBitrate
+  }
+end function
+
+function getMeasuredBitrate(value as integer) as integer
+  return value / m.config.messages.kilo
+end function
+
+function getDuration(value as integer) as object
+  hours = FIX(value / 3600)
+  minutes = FIX((value - hours * 3600) / 60)
+  seconds = value - hours * 3600 - minutes * 60
+  return {
+    "hours": hours, "minutes": minutes, "seconds": seconds
+  }
 end function

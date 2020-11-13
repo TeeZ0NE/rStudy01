@@ -8,5 +8,6 @@
     <field id="overview" type="string" />
     <field id="vote" type="float" />
     <field id="poster_path" type="string" />
+    <field id="video_url" type="string" />
   </interface>
 </component>

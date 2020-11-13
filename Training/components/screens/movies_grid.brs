@@ -15,6 +15,7 @@ sub onFeedChanged(data as object)
     node.overview = item.overview
     node.vote = item.vote_average
     node.poster_path = item.poster_path
+    node.url = "http://video.ted.com/talks/podcast/ImogenHeap_WaitItOut_2009G_480.mp4"
     gridContent.appendChild(node)
   end for
   showMarkupGrid(gridContent)

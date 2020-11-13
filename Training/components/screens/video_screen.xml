@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component
+  extends="Group"
+  name="video_screen"
+  >
+  <children>
+    <Video
+      id="video_player"
+      translation="[0,0]"
+      width="0"
+      height="0"
+      />
+  </children>
+</component>

@@ -17,7 +17,8 @@
     "empty": "Nothing to show!",
     "releaseDate": "Release Date: ",
     "streamBitrate": "streamBitrate: ",
-    "videoFormat": "Video Format: "
+    "videoFormat": "Video Format: ",
+    "kilo": 1000
   },
   "details": {
     "detailInfo": "Detail information:",

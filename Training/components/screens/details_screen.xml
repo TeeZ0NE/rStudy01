@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<component name="details_screen" extends="Group">
+<component
+  extends="Group"
+  initialFocus="play_button"
+  name="details_screen"
+  >
   <interface>
     <field id="content"
       type="node"
       alwaysnotify="true"
       onChange="onContentChange" />
-    <field id="play_btn_pressed"
+    <field id="play_button_pressed"
       type="integer"
       alwaysnotify="true"
-      alias="play_btn.buttonSelected" />
+      alias="play_button.buttonSelected" />
     <field
       id="config"
       type="assocArray"
@@ -68,7 +72,7 @@
         wrap="true"
         />
       <Button
-        id="play_btn"
+        id="play_button"
         text="Play"
         translation="[500,400]"
         />
