@@ -23,7 +23,6 @@ sub onConfigResponse(response as object) as void
 end sub
 
 sub onConfigError(errorMessage as object)
-  ? "[home ConfigError] ";error
   showDialog({
     "title": m.config.titles.error,
     "message": errorMessage.GetData()
@@ -101,7 +100,6 @@ function onKeyEvent(key as string, press as boolean) as boolean
         closeVideo()
         return true
       else if key = "up" and m.videoPlayer.state = "playing"
-        ? "Video screen up pressed"
         showVideoInfo()
         return false
       end if
