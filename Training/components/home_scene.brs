@@ -23,8 +23,10 @@ sub onConfigResponse(response as object) as void
 end sub
 
 sub onConfigError(errorMessage as object)
+  title = "Error!"
+  if m.config.titles <> invalid then title = m.config.titles.error
   showDialog({
-    "title": m.config.titles.error,
+    "title": title,
     "message": errorMessage.GetData()
   })
 end sub
