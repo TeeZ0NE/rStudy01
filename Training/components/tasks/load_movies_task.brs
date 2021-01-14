@@ -9,7 +9,7 @@ function request() as void
   http.RetainBodyOnError(true)
   port = createObject("roMessagePort")
   http.setPort(port)
-  ' http.setCertificatesFile("common:/certs/ca-bundle.crt")
+  http.setCertificatesFile("common:/certs/ca-bundle.crt")
   http.InitClientCertificates()
   http.enablehostverification(false)
   http.enablepeerverification(false)
